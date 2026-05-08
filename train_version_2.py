@@ -48,6 +48,12 @@ df["team_b_home"] = df["team_b_home"].fillna(0)
 # toss advantage feature:-
 df["team_a_toss_win"] = (df["toss_winner"]==df["team_a"]).astype(int)
 
+df["NRR_diff"] = df["team_a_NRR"] - df["team_b_NRR"]
+
+df["last5_diff"] = (
+    df["team_a_last5_win_pct"]
+    - df["team_b_last5_win_pct"]
+)
 # encoding______________________________________
 dataset = {}
 # labelencode:-
@@ -80,10 +86,12 @@ x = df[[
     # "toss_winner",
     # "toss_decision",
     # "team_a_toss_win",
-    "team_a_NRR",
-    "team_b_NRR",
-    "team_a_last5_win_pct",
-    "team_b_last5_win_pct",
+    # "team_a_NRR",
+    # "team_b_NRR",
+    "NRR_diff",
+    # "team_a_last5_win_pct",
+    # "team_b_last5_win_pct",
+    "last5_diff",
     "h2h_win_pct", # new add
     # "team_a_home", # new add
     # "team_b_home" # new add

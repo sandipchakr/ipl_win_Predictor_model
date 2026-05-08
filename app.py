@@ -173,7 +173,12 @@ team_b_NRR = col2.slider(
 #     f"{team_b} home ground ...?",
 #     ["Yes", "No"]
 # )
+NRR_diff = team_a_NRR - team_b_NRR
 
+last5_diff = (
+    (team_a_last5_wins / 5)
+    - (team_b_last5_wins / 5)
+)
 if st.button("Predict Winner"):
     prediction = predict_winner(
         team_a,
@@ -182,10 +187,12 @@ if st.button("Predict Winner"):
         city,
         # toss_decision,
         # team_a_toss_win,
-        team_a_NRR,
-        team_b_NRR,
-        team_a_last5_wins/5, # convert to win percentage
-        team_b_last5_wins/5, # convert to win percentage
+        # team_a_NRR,
+        # team_b_NRR,
+        # team_a_last5_wins/5, # convert to win percentage
+        # team_b_last5_wins/5, # convert to win percentage
+        NRR_diff,
+        last5_diff,
         h2h_win_pct/100, # convert to decimal
         # 1 if team_a_home == "Yes" else 0,
         # 1 if team_b_home == "Yes" else 0

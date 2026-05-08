@@ -72,7 +72,7 @@ def predict_winner(team_a, team_b, venue, city, toss_decision,
 
 
 st.markdown(
-    "<h1 style="">🏏 IPL Winner Predictor 🤖</h1>",
+    "<h1>🏏 IPL Winner Predictor 🤖</h1>",
     unsafe_allow_html=True
 )
 def calculate_h2h(team_a, team_b):

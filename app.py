@@ -14,9 +14,9 @@ model = data["model"]
 encoders = data["encoders"]
 # print(encoders)
 
-def predict_winner(team_a, team_b, venue, city, toss_decision,
-                   team_a_toss_win, team_a_NRR, team_b_NRR, team_a_last5_win_pct, 
-                   team_b_last5_win_pct, h2h_win_pct, team_a_home, team_b_home):
+def predict_winner(team_a, team_b, venue, city
+                  , team_a_NRR, team_b_NRR, team_a_last5_win_pct, 
+                   team_b_last5_win_pct, h2h_win_pct):
     
     # input_data = np.array([[team_a, team_b, venue, city, toss_decision, team_a_toss_win, 
     #                         team_a_NRR, team_b_NRR, team_a_last5_win_pct, team_b_last5_win_pct, 
@@ -27,15 +27,15 @@ def predict_winner(team_a, team_b, venue, city, toss_decision,
     "team_b": team_b,
     "venue": venue,
     "city": city,
-    "toss_decision": toss_decision,
-    "team_a_toss_win": team_a_toss_win,
+    # "toss_decision": toss_decision,
+    # "team_a_toss_win": team_a_toss_win,
     "team_a_NRR": team_a_NRR,
     "team_b_NRR": team_b_NRR,
     "team_a_last5_win_pct": team_a_last5_win_pct,
     "team_b_last5_win_pct": team_b_last5_win_pct,
     "h2h_win_pct": h2h_win_pct,
-    "team_a_home": team_a_home,
-    "team_b_home": team_b_home
+    # "team_a_home": team_a_home,
+    # "team_b_home": team_b_home
 }])
     
     # input_data[:, 0] = encoders["team_a"].transform(input_data[:, 0])
@@ -48,7 +48,7 @@ def predict_winner(team_a, team_b, venue, city, toss_decision,
     input_data["team_b"] = encoders["team_b"].transform(input_data["team_b"])
     input_data["venue"] = encoders["venue"].transform(input_data["venue"])
     input_data["city"] = encoders["city"].transform(input_data["city"])
-    input_data["toss_decision"] = encoders["toss_decision"].transform(input_data["toss_decision"])
+    # input_data["toss_decision"] = encoders["toss_decision"].transform(input_data["toss_decision"])
 
     prediction = model.predict(input_data)
     return prediction[0]
@@ -120,17 +120,17 @@ city = st.selectbox(
     "Select City",
     df["city"].dropna().unique()
 )
-col1,col2 = st.columns(2)
-team_a_toss_win = col1.radio(
-    "Did Team A Win Toss?",
-    ["Yes", "No"]
-)
-team_a_toss_win = 1 if team_a_toss_win == "Yes" else 0
+# col1,col2 = st.columns(2)
+# team_a_toss_win = col1.radio(
+#     "Did Team A Win Toss?",
+#     ["Yes", "No"]
+# )
+# team_a_toss_win = 1 if team_a_toss_win == "Yes" else 0
 
-toss_decision = col2.selectbox(
-    "Toss Decision",
-    df["toss_decision"].dropna().unique()
-)
+# toss_decision = col2.selectbox(
+#     "Toss Decision",
+#     df["toss_decision"].dropna().unique()
+# )
 team_a_last5_wins = st.slider(
     f"{team_a} Wins in Last 5 Matches",
     0,
@@ -164,15 +164,15 @@ team_b_NRR = col2.slider(
     step=0.01
 )
 
-col1,col2 = st.columns(2)
-team_a_home = col1.radio(
-    f"{team_a} home ground ...?",
-    ["Yes", "No"]
-)
-team_b_home = col2.radio(
-    f"{team_b} home ground ...?",
-    ["Yes", "No"]
-)
+# col1,col2 = st.columns(2)
+# team_a_home = col1.radio(
+#     f"{team_a} home ground ...?",
+#     ["Yes", "No"]
+# )
+# team_b_home = col2.radio(
+#     f"{team_b} home ground ...?",
+#     ["Yes", "No"]
+# )
 
 if st.button("Predict Winner"):
     prediction = predict_winner(
@@ -180,15 +180,15 @@ if st.button("Predict Winner"):
         team_b,
         venue,
         city,
-        toss_decision,
-        team_a_toss_win,
+        # toss_decision,
+        # team_a_toss_win,
         team_a_NRR,
         team_b_NRR,
         team_a_last5_wins/5, # convert to win percentage
         team_b_last5_wins/5, # convert to win percentage
         h2h_win_pct/100, # convert to decimal
-        1 if team_a_home == "Yes" else 0,
-        1 if team_b_home == "Yes" else 0
+        # 1 if team_a_home == "Yes" else 0,
+        # 1 if team_b_home == "Yes" else 0
     )
     winner = team_a if prediction == 1 else team_b
     st.success(f"Predicted Winner: {winner}")

@@ -15,8 +15,7 @@ encoders = data["encoders"]
 # print(encoders)
 
 def predict_winner(team_a, team_b, venue, city
-                  , team_a_NRR, team_b_NRR, team_a_last5_win_pct, 
-                   team_b_last5_win_pct, h2h_win_pct):
+                  , NRR_diff, last5_diff, h2h_win_pct):
     
     # input_data = np.array([[team_a, team_b, venue, city, toss_decision, team_a_toss_win, 
     #                         team_a_NRR, team_b_NRR, team_a_last5_win_pct, team_b_last5_win_pct, 
@@ -29,10 +28,12 @@ def predict_winner(team_a, team_b, venue, city
     "city": city,
     # "toss_decision": toss_decision,
     # "team_a_toss_win": team_a_toss_win,
-    "team_a_NRR": team_a_NRR,
-    "team_b_NRR": team_b_NRR,
-    "team_a_last5_win_pct": team_a_last5_win_pct,
-    "team_b_last5_win_pct": team_b_last5_win_pct,
+    # "team_a_NRR": team_a_NRR,
+    # "team_b_NRR": team_b_NRR,
+    # "team_a_last5_win_pct": team_a_last5_win_pct,
+    # "team_b_last5_win_pct": team_b_last5_win_pct,
+    "NRR_diff": NRR_diff,
+    "last5_diff": last5_diff,
     "h2h_win_pct": h2h_win_pct,
     # "team_a_home": team_a_home,
     # "team_b_home": team_b_home

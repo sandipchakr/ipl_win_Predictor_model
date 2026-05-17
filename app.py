@@ -149,7 +149,7 @@ st.subheader("Net Run Rate")
 
 col1, col2 = st.columns(2)
 
-team_a_NRR = col1.slider(
+team_a_NRR = col1.number_input(
     f"{team_a} NRR",
     min_value=-5.0,
     max_value=5.0,
@@ -157,7 +157,7 @@ team_a_NRR = col1.slider(
     step=0.01
 )
 
-team_b_NRR = col2.slider(
+team_b_NRR = col2.number_input(
     f"{team_b} NRR",
     min_value=-5.0,
     max_value=5.0,
